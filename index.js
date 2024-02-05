@@ -6,9 +6,19 @@ var gameStarted = false;
 
 
 // event listener
-$(document).on("keydown",function(event){
+// $(document).on("keydown",function(event){
+//     // console.log(event.key);
+//     if((event.key === "a" || event.key === "A") && gameStarted === false) {
+//         gameStarted = true;
+//         generateNewAnsSequential();
+//         level=1;
+//         showLevel();
+//     }
+// });
+
+$(document).on("click",function(event){
     // console.log(event.key);
-    if((event.key === "a" || event.key === "A") && gameStarted === false) {
+    if(gameStarted === false) {
         gameStarted = true;
         generateNewAnsSequential();
         level=1;
@@ -48,7 +58,7 @@ function audioPress(currentColor){
 }
 
 function gameOver() {
-    $("h1").text("Game Over!!! Press A to Start Again.");
+    $("h1").text("Game Over!!! Click Anywhere to Start Again.");
     $("body").addClass("game-over");
     setTimeout(function(){
         $("body").removeClass("game-over");
@@ -58,7 +68,9 @@ function gameOver() {
     gameOverAudio.play();
     ansSequential = []; 
     userSequential = [];
-    gameStarted = false;
+    setTimeout(function(){
+        gameStarted = false;
+    },500);
 }
 
 function showLevel() {
